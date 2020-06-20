@@ -1,0 +1,16 @@
+We need to deploy metric server first which is a pre-req for HPA
+
+https://github.com/kubernetes-sigs/metrics-server (I referred this but there were lot of issues, I created my own file which you should use)
+
+Run file one and wait for few seconds. You will see below commands start working:
+
+kubectl top node
+kubectl top pod
+
+Run file two and wait for every thing to come up and then create autoscaler and do a stress testing:
+
+Horizontal Pod Autoscaler automatically scales the number of pods in a replication controller, deployment, replica set based on observed CPU utilization.
+
+kubectl autoscale deployment webappsvc --cpu-percent=30 --min=1 --max=10
+
+kubectl get hpa
